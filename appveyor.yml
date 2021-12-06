@@ -1,0 +1,15 @@
+image: Ubuntu
+
+stack: jdk 15
+
+branches:
+  only:
+    - main
+
+build: off
+
+install:
+  - java -jar app-ibank.jar -P:profile=test &
+
+build_script:
+  - ./mvnw clean test -Dselenide.headless=true -Dselenide.baseUrl=http://localhost:9999
